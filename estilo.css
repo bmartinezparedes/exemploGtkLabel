@@ -8,5 +8,6 @@
     background-color: red;
 }
 button{
-    color: pink;
+    background-image: linear-gradient(pink);
+    border-bottom-color: blue;
 }
