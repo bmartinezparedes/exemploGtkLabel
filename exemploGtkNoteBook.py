@@ -23,8 +23,9 @@ class Aplicacion(Gtk.Window):
         paxina2.add(Gtk.Label(label="Paxina con imaxe na lapela"))
         cartafol.append_page(paxina2, Gtk.Image.new_from_icon_name("help-about",Gtk.IconSize.MENU))
 
-
-        cartafol.append_page(GridConBotones.CaixaDeBotons(), Gtk.Label(label="Caixa con botons"))
+        caixaBotons=GridConBotones.CaixaDeBotons()
+        caixaBotons.set_border_width(10)
+        cartafol.append_page(caixaBotons, Gtk.Label(label="Caixa con botons"))
 
         self.add(cartafol)
 
