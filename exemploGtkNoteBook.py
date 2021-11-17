@@ -8,7 +8,7 @@ from gi.repository import Gtk
 class Aplicacion(Gtk.Window):
     def __init__(self):
         super().__init__()
-        self.set_title("Exemplo de un Gtk.Grid")
+        self.set_title("Exemplo de NoteBook")
         self.set_border_width(5)
 
         cartafol=Gtk.Notebook()
