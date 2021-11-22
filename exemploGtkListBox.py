@@ -66,7 +66,7 @@ class Aplicacion(Gtk.Window):
         def order(fila1,fila2,palabra,notify_destroy):
             return fila1.palabra.lower()>fila2.palabra.lower()
         def filtrar(fila,datos,notify_destroy):
-            return False if fila.palabra=="ListBox" else True
+            return False if fila.palabra[-1]==("a") else True
 
         listBox2.set_sort_func(order,None,False)
         listBox2.set_filter_func(filtrar,None,False)
