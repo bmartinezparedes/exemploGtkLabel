@@ -47,6 +47,7 @@ class Aplicacion(Gtk.Window):
         txvEtiqueta.set_size_request(300,50)
         caixa.pack_start(txvEtiqueta,True,True,0)
         btnEditarEtiqueta = Gtk.Button()
+        btnEditarEtiqueta.connect("clicked", self.on_btn_EditarEtiqueta_clicked)
         #icono = Gio.ThemedIcon("preferences-other")
         imaxe= Gtk.Image.new_from_icon_name("preferences-other",Gtk.IconSize.BUTTON)
         btnEditarEtiqueta.set_image(imaxe)
@@ -104,6 +105,8 @@ class Aplicacion(Gtk.Window):
         self.show_all()
     def on_cmdElipsis_changed(self,control):
         self.entradaTexto.set_text(control.get_active_text())
+    def on_btn_EditarEtiqueta_clicked(self,boton):
+        self.entradaTexto.set_text("Boton pulsado")
 if __name__=="__main__":
     Aplicacion()
     Gtk.main()
