@@ -44,6 +44,7 @@ class Aplicacion(Gtk.Window):
         rede.add(lblEtiqueta)
         caixa = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         txvEtiqueta=Gtk.TextView()
+        self.buferTxvEtiqueta = txvEtiqueta.get_buffer()
         txvEtiqueta.set_size_request(300,50)
         caixa.pack_start(txvEtiqueta,True,True,0)
         btnEditarEtiqueta = Gtk.Button()
@@ -105,6 +106,8 @@ class Aplicacion(Gtk.Window):
         self.show_all()
     def on_cmdElipsis_changed(self,control):
         self.entradaTexto.set_text(control.get_active_text())
+        punteiro = self.buferTxvEtiqueta.get_end_iter()
+        self.buferTxvEtiqueta.insert(punteiro, control.get_active_text() + "\n")
     def on_btn_EditarEtiqueta_clicked(self,boton):
         self.entradaTexto.set_text("Boton pulsado")
 if __name__=="__main__":
