@@ -4,6 +4,7 @@ import GridConBotones
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gio
+from gi.repository.GdkPixbuf import Pixbuf
 
 
 class Aplicacion(Gtk.Window):
@@ -45,6 +46,26 @@ class Aplicacion(Gtk.Window):
         cmbPaises.add_attribute(celda, "text", 0)#celda que leva texto coon el modelo 0 (mdlPaises)
         caixaV.pack_start(cmbPaises,False,False,10)
 
+        mdlImaxes = Gtk.ListStore(str,str)
+        imaxes = [("Cortar","edit-cut"), ("Pegar","edit-paste"), ("Copiar","edit-copy"),("Novo","document-new"),("Abrir","document-open"),("Gardar","document-save")]
+        for etiqueta,imaxe in imaxes:
+            mdlImaxes.append([etiqueta,imaxe])
+
+        cmbImaxes = Gtk.ComboBox.new_with_model(mdlImaxes)
+        celda = Gtk.CellRendererText()
+        cmbImaxes.pack_start(celda, True)
+        cmbImaxes.add_attribute(celda, "text", 0)
+        caixaV.pack_start(cmbImaxes, False, False, 10)
+
+        trvImaxes = Gtk.TreeView()
+        trvImaxes.set_model(mdlImaxes)
+        celdaTexto = Gtk.CellRendererText()
+        columnaTexto = Gtk.TreeViewColumn("Text", celdaTexto, text=0)
+        trvImaxes.append_column(columnaTexto)
+        celdaImaxes = Gtk.CellRendererPixbuf()
+        columnaImaxes = Gtk.TreeViewColumn("Image", celdaImaxes,icon_name=1)
+        trvImaxes.append_column(columnaImaxes)
+        caixaV.pack_start(trvImaxes, True,False,5)
 
         self.add(caixaV)
         self.connect("destroy", Gtk.main_quit)
