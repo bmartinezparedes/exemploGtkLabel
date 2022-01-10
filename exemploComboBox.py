@@ -32,9 +32,29 @@ class Aplicacion(Gtk.Window):
         #cmbNomes.pack_start(celda, True)
         #cmbNomes.add_attribute(celda, "text", 1)
         caixaV.pack_start(cmbNomes, False, False, 0)
+
+        mdlPaises = Gtk.ListStore(str)
+        paises = ["Letonia","Brasiñ","Arxentina","Surinam","Kenia","Islandia","Xapon"]
+        for pais in paises:
+            mdlPaises.append([pais])
+
+        cmbPaises = Gtk.ComboBox.new_with_model(mdlPaises)
+        cmbPaises.connect("changed",self.on_cmbPaises_changed)
+        celda = Gtk.CellRendererText()
+        cmbPaises.pack_start(celda,True)
+        cmbPaises.add_attribute(celda, "text", 0)#celda que leva texto coon el modelo 0 (mdlPaises)
+        caixaV.pack_start(cmbPaises,False,False,10)
+
+
         self.add(caixaV)
         self.connect("destroy", Gtk.main_quit)
         self.show_all()
+    def on_cmbPaises_changed(self,combo):
+        fila = combo.get_active_iter()
+        if fila is not None:
+            modelo = combo.get_model()
+            pais = modelo [fila][0]
+            print("Pais seleccionado: %s"%pais)
     def on_cmbNomes_changed(self, combo):
         fila = combo.get_active_iter()
         if fila is not None:
