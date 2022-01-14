@@ -13,13 +13,13 @@ class Aplicacion(Gtk.Window):
         self.set_title("Exemplo TreeView con TreeStore")
         self.set_border_width(5)
         #Creo el modelo
-        modelo = Gtk.TreeStore(str,int,str)
+        modelo = Gtk.TreeStore(str,int,str,bool)
         for avo in range (5):
-            punteiroAvo = modelo.append(None,['Avó', avo,"Sen datos"])
+            punteiroAvo = modelo.append(None,['Avó', avo,"Sen datos",True])
             for pai in range (4):
-                punteiroPai = modelo.append(punteiroAvo, ['Pai', pai,"Lexítimo"])
+                punteiroPai = modelo.append(punteiroAvo, ['Pai', pai,"Lexítimo",False])
                 for fillo in range(6):
-                    punteiroFillo = modelo.append(punteiroPai, ['Fillo', fillo,"Lexítimo"])
+                    punteiroFillo = modelo.append(punteiroPai, ['Fillo', fillo,"Lexítimo",True])
 
         trvArboreXeneraloxico = Gtk.TreeView(model=modelo)
         # Columna 1
@@ -50,6 +50,14 @@ class Aplicacion(Gtk.Window):
         celdaCombo.connect("edited", self.on_combo_edited, modelo)
         trvColumnaCombo = Gtk.TreeViewColumn("Combo", celdaCombo, text=2)
         trvArboreXeneraloxico.append_column(trvColumnaCombo)
+        #Columna 4
+        trvColumna = Gtk.TreeViewColumn("Vivo?")
+        celda= Gtk.CellRendererToggle()
+        celda.set_property("activatable",True)
+        celda.connect("toggled", self.on_check_toggled,modelo)
+        trvColumna.pack_start(celda,True)
+        trvColumna.add_attribute(celda,"active",3)
+        trvArboreXeneraloxico.append_column(trvColumna)
 
         self.add(trvArboreXeneraloxico)
         self.connect("destroy", Gtk.main_quit)
@@ -59,6 +67,8 @@ class Aplicacion(Gtk.Window):
     def on_columna_edited(self, control, fila, texto, modelo):
         modelo [fila][0] = texto
         print("Te queremos kiskos")#By Patri y Britza :)
+    def on_check_toggled(self,control,fila,modelo):
+        modelo [fila][3]= not modelo [fila][3]
 if __name__ == "__main__":
     Aplicacion()
     Gtk.main()
