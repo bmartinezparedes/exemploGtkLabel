@@ -27,7 +27,7 @@ class Aplicacion(Gtk.Window):
         trvArboreXeneraloxico.append_column(trvColumna)
         celda = Gtk.CellRendererText()
         celda.set_property("editable",True)
-        celda.connect("edited", self.on_columna_changed,modelo)
+        celda.connect("edited", self.on_columna_edited, modelo)
         trvColumna.pack_start(celda, True)
         trvColumna.add_attribute(celda, "text", 0)
         #Columna 2
@@ -47,16 +47,16 @@ class Aplicacion(Gtk.Window):
         celdaCombo.set_property("model", tipoParentesco)
         celdaCombo.set_property("text-column", 0)
         celdaCombo.set_property("has-entry", False)
-        celdaCombo.connect("edited", self.on_combo_changed,modelo)
+        celdaCombo.connect("edited", self.on_combo_edited, modelo)
         trvColumnaCombo = Gtk.TreeViewColumn("Combo", celdaCombo, text=2)
         trvArboreXeneraloxico.append_column(trvColumnaCombo)
 
         self.add(trvArboreXeneraloxico)
         self.connect("destroy", Gtk.main_quit)
         self.show_all()
-    def on_combo_changed(self,control,fila,texto, modelo):
+    def on_combo_edited(self, control, fila, texto, modelo):
         modelo [fila][2] = texto
-    def on_columna_changed(self,control,fila,texto,modelo):
+    def on_columna_edited(self, control, fila, texto, modelo):
         modelo [fila][0] = texto
         print("Te queremos kiskos")#By Patri y Britza :)
 if __name__ == "__main__":
