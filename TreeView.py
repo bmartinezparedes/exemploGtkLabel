@@ -26,6 +26,8 @@ class Aplicacion(Gtk.Window):
         trvColumna = Gtk.TreeViewColumn('Parentesco')
         trvArboreXeneraloxico.append_column(trvColumna)
         celda = Gtk.CellRendererText()
+        celda.set_property("editable",True)
+        celda.connect("edited", self.on_columna_changed,modelo)
         trvColumna.pack_start(celda, True)
         trvColumna.add_attribute(celda, "text", 0)
         #Columna 2
@@ -54,8 +56,9 @@ class Aplicacion(Gtk.Window):
         self.show_all()
     def on_combo_changed(self,control,fila,texto, modelo):
         modelo [fila][2] = texto
-
-
+    def on_columna_changed(self,control,fila,texto,modelo):
+        modelo [fila][0] = texto
+        print("Te queremos kiskos")#By Patri y Britza :)
 if __name__ == "__main__":
     Aplicacion()
     Gtk.main()
