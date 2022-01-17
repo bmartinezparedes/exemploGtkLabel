@@ -47,14 +47,25 @@ class Aplicacion(Gtk.Window):
         caixaV.pack_start(cmbPaises,False,False,10)
 
         mdlImaxes = Gtk.ListStore(str,str)
-        imaxes = [("Cortar","edit-cut"), ("Pegar","edit-paste"), ("Copiar","edit-copy"),("Novo","document-new"),("Abrir","document-open"),("Gardar","document-save")]
+        imaxes = [("Cortar","edit-cut"),
+                  ("Pegar","edit-paste"),
+                  ("Copiar","edit-copy"),
+                  ("Novo","document-new"),
+                  ("Abrir","document-open"),
+                  ("Gardar","document-save")]
         for etiqueta,imaxe in imaxes:
             mdlImaxes.append([etiqueta,imaxe])
 
-        cmbImaxes = Gtk.ComboBox.new_with_model(mdlImaxes)
+        """cmbImaxes = Gtk.ComboBox.new_with_model(mdlImaxes)
         celda = Gtk.CellRendererText()
         cmbImaxes.pack_start(celda, True)
         cmbImaxes.add_attribute(celda, "text", 0)
+        caixaV.pack_start(cmbImaxes, False, False, 10)"""
+
+        cmbImaxes = Gtk.ComboBox.new_with_model(mdlImaxes)
+        celda = Gtk.CellRendererPixbuf()
+        cmbImaxes.pack_start(celda, True)
+        cmbImaxes.add_attribute(celda, "icon_name", 1)
         caixaV.pack_start(cmbImaxes, False, False, 10)
 
         trvImaxes = Gtk.TreeView()
