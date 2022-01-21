@@ -34,11 +34,14 @@ class Aplicacion(Gtk.Window):
         grid = Gtk.Grid()
         grid.set_column_homogeneous(True)
         grid.set_row_homogeneous(True)
-        trvVistaProgramas = Gtk.TreeView(model=self.filtroLinguaxe)
+        trvVistaProgramas = Gtk.TreeView(model=programas)
         for i, tituloColumna in enumerate (["Software","Ano","Linguaxe de programación"]):
             celda = Gtk.CellRendererText()
             columna = Gtk.TreeViewColumn(tituloColumna, celda, text=i)
             trvVistaProgramas.append_column(columna)
+            if i==1:
+                columna.set_sort_column_id(1)
+        programas.set_sort_func(1,self.ordear_por_ano,None)
 
         scroll = Gtk.ScrolledWindow()
         scroll.set_vexpand(True)
@@ -75,7 +78,16 @@ class Aplicacion(Gtk.Window):
             return True
         else:
             return modelo[fila][2]== self.filtro_actual_linguaxe
-
+    def ordear_por_ano(self,modelo,fila1,fila2,datos_usuario):
+        columna, _ =modelo.get_sort_column_id()
+        ano1 = modelo.get_value(fila1,columna)
+        ano2 = modelo [fila2][columna]
+        if ano1 > ano2:
+            return -1
+        elif ano1 == ano2:
+            return 0
+        else:
+            return 1
 
 if __name__=="__main__":
     Aplicacion()
