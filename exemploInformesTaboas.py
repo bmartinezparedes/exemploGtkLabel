@@ -27,7 +27,7 @@ i = Image ('/home/oracle/Imaxes/Captura de pantalla de 2021-12-13 17-54-42.png',
 
 datos=[['Arriba\nEsquerda', '', '02','03','04'],
        ['','','12',p,'14'],
-       ['20','21','22','Abaixo\nDereita'],
+       ['20',i,'22','Abaixo\nDereita'],
        ['30','31','32','','']]
 
 estilo = [('GRID', (0,0), (-1,-1), 0.5, colors.grey),
