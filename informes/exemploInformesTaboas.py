@@ -2,8 +2,9 @@ from reportlab.platypus import SimpleDocTemplate, PageBreak, Table,TableStyle, S
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
+import sqlite3 as dbapi
 
-doc = SimpleDocTemplate("exeploTaboas.pdf",pagesize=A4)
+doc = SimpleDocTemplate("informes/exeploTaboas.pdf", pagesize=A4)
 
 guion = []
 
@@ -38,4 +39,29 @@ estilo = [('GRID', (0,0), (-1,-1), 0.5, colors.grey),
 taboa2 = Table (data=datos,style=estilo)
 
 guion.append(taboa2)
+guion.append(Spacer(0,15))
+try:
+    bbdd = dbapi.connect("informes/modelosClasicos.dat")
+    cursor = bbdd.cursor()
+    usuarios =[]
+    usuarios.append(("Nome","Apelidos", "Numero Cliente","Telefono"))
+    cursor.execute("SELECT * FROM main.clientes")
+    for rexistro in cursor.fetchall():
+        print(rexistro[1],rexistro[0],rexistro[2])
+        usuarios.append((rexistro[1],rexistro[0],rexistro[2], rexistro[4]))
+
+except dbapi.DatabaseError as e:
+    print("Erro na base de datos: " + str(e))
+
+estilo = [('Box', (0,0), (1, -1), 1.0, colors.darkgray),
+    ('Box', (1,0), (-1, -1), 1.0, colors.darkgray),
+    ('INNERGRID', (0,0), (-1,-1), 0.5, colors.black),
+    ('BACKGROUND', (0,0), (0,-1), colors.palegreen),
+    ('TEXTCOLOR', (0, 0), (0, -1), colors.brown),
+    ('BACKGROUND',(1,0),(-1,-1), colors.grey),
+    ('TEXTCOLOR',(1,0),(-1,-1),colors.brown),
+    ('ALIGN',(0,0),(-1,-1),"CENTER")]
+taboaUsuarios= Table(data=usuarios,style=estilo)
+guion.append(taboaUsuarios)
+
 doc.build(guion)
