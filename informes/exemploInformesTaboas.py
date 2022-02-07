@@ -43,24 +43,35 @@ guion.append(Spacer(0,15))
 try:
     bbdd = dbapi.connect("informes/modelosClasicos.dat")
     cursor = bbdd.cursor()
+    estilo = [('BOX', (0, 0), (-1, 0), 1.0, colors.darkgray),
+              ('BOX', (0, 1), (-1, -1), 1.0, colors.darkgray),
+              ('INNERGRID', (0, 0), (-1, -1), 0.4, colors.lightgrey),
+              ('BACKGROUND', (0, 0), (-1, 0), colors.lightgreen)
+              ]
     usuarios =[]
     usuarios.append(("Nome","Apelidos", "Numero Cliente","Telefono"))
-    cursor.execute("SELECT * FROM main.clientes")
-    for rexistro in cursor.fetchall():
-        print(rexistro[1],rexistro[0],rexistro[2])
-        usuarios.append((rexistro[1],rexistro[0],rexistro[2], rexistro[4]))
+    cursor.execute("SELECT nomeCliente, apelidosCliente, numeroCliente, telefono FROM main.clientes")
+    for n, rexistro in enumerate(cursor.fetchall()):
+        print(rexistro)
+        usuarios.append((rexistro[1],rexistro[0],rexistro[2], rexistro[3]))
+        if n%2 == 0:
+            for c in range(len(rexistro)):
+                if c % 2 == 0:
+                    print(c,n)
+                    estilo.append(('BACKGROUND', (c, n + 1), (c, n + 1), colors.HexColor('#f4f6f6')))
+                else:
+                    print(c,n)
+                    estilo.append(('BACKGROUND', (c, n + 1), (c, n + 1), colors.HexColor('#e5e8e8')))
+        else:
+            estilo.append(('BACKGROUND', (0, n + 1), (0, n + 1), colors.HexColor('#d6dbdf')))
+            estilo.append(('BACKGROUND', (1, n + 1), (1, n + 1), colors.HexColor('#d5d8dc')))
+            estilo.append(('BACKGROUND', (2, n + 1), (2, n + 1), colors.HexColor('#d6dbdf')))
+            estilo.append(('BACKGROUND', (3, n + 1), (3, n + 1), colors.HexColor('#d5d8dc')))
 
 except dbapi.DatabaseError as e:
     print("Erro na base de datos: " + str(e))
 
-estilo = [('Box', (0,0), (1, -1), 1.0, colors.darkgray),
-    ('Box', (1,0), (-1, -1), 1.0, colors.darkgray),
-    ('INNERGRID', (0,0), (-1,-1), 0.5, colors.black),
-    ('BACKGROUND', (0,0), (0,-1), colors.palegreen),
-    ('TEXTCOLOR', (0, 0), (0, -1), colors.brown),
-    ('BACKGROUND',(1,0),(-1,-1), colors.grey),
-    ('TEXTCOLOR',(1,0),(-1,-1),colors.brown),
-    ('ALIGN',(0,0),(-1,-1),"CENTER")]
+
 taboaUsuarios= Table(data=usuarios,style=estilo)
 guion.append(taboaUsuarios)
 
