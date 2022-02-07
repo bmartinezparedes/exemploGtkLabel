@@ -27,6 +27,8 @@ bg.categoryAxis.labels.angle = 30
 bg.categoryAxis.categoryNames = ['Xan-21', 'Feb-21', 'Mar-21', 'Abr-21', 'Mai-21', 'Xun-21', 'Xul-21','Ago-21']
 bg.groupSpacing = 10
 bg.barSpacing = 2
+bg.bars[0].fillColor = colors.yellowgreen
+bg.bars[1].fillColor = colors.greenyellow
 d.add(bg)
 guion.append(d)
 
