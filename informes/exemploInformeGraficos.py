@@ -1,4 +1,5 @@
-from reportlab.platypus import SimpleDocTemplate
+from reportlab.platypus import SimpleDocTemplate, Spacer
+from reportlab.graphics.charts.piecharts import Pie
 from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.textlabels import Label
 from reportlab.graphics.shapes import Drawing
@@ -47,6 +48,26 @@ bg.bars[1].fillColor = colors.greenyellow
 bg.bars[1].strokeColor = colors.yellow
 bg.bars[0].strokeColor = colors.green
 d.add(bg)
+guion.append(d)
+guion.append(Spacer(0,15))
+
+d = Drawing(300,200)
+tarta = Pie()
+tarta.data = [3,12,20,50,30]
+tarta.labels = ['Non Prensetados', 'Suspensos', 'Aprobados', 'Notables', 'Sobresalientes']
+tarta.x = 65
+tarta.y = 15
+tarta.width = 180
+tarta.height = 180
+tarta.slices.strokeWidth = 0.5
+tarta.slices[2].popout = 10
+tarta.slices[3].strokeWidth = 2
+tarta.slices[3].strokeDashArray = [5, 2]
+tarta.slices[3].labelRadius = 1.75
+tarta.slices[3].fontColor = colors.red
+tarta.sideLabels = 1
+
+d.add(tarta)
 guion.append(d)
 
 doc = SimpleDocTemplate("informeGraficos.pdf", pagesize = A4)
