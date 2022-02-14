@@ -1,7 +1,16 @@
 class Punto:
-    """Clase que define a un punto en un plano de duas dimensions"""
+    """
+    Clase que define a un punto en un plano de duas dimensions
+    Exemplo de documentación segundo o PEP 257
+    """
 
     def __init__(self, x=0, y=0):
+        """
+        Constructor que define las propiedades de x e y dun punto bidimensional.
+
+        :param x: Coordenada x do punto
+        :param y: Coordenada y do punto
+        """
         self.x = x
         self.y = y
 
