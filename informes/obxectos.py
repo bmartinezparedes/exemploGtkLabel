@@ -1,3 +1,11 @@
+"""
+.. module::obxectos
+    :platform: Unix, Windows
+    :synopsis: Exemplos das clases en python
+
+.. moduleauthor:: Braiskiskos <bmartinezparedes@gmail.com>
+
+"""
 class Punto:
     """
     Clase que define a un punto en un plano de duas dimensions
@@ -22,8 +30,10 @@ class Circulo(Punto):
 
 
 class Punto2:
-    """Clase que representa puntos no primeiro cuarante
-    Implica que x>o e y>0
+    """
+    Clase que representa puntos no primeiro cuarante
+    Clase
+    :param x:
     """
 
     def __init__(self, x, y):
@@ -45,12 +55,20 @@ class Punto2:
             print("Valor inicializado en 0")
 
     def setY(self, y):
+        """
+        Método que permite dar valor a coordenada y do punto.
+        O método asigna o valor da coordenada x sempre que sexa y>0. En caso contrario
+        lanza unha excepcion de tipo ValueError.
+
+        :param y: Parametro a darlle valor no eixe da y
+        :raises ValueError: Excepcion que nos dara se o valor é menor de 0
+        """
         if y > 0:
             self.__y = y
         else:
             raise ValueError
             #self.__y = 0
-            p#rint("Valor inicializado en 0")
+            #print("Valor inicializado en 0")
 
     # Sirve para comparar este objeto con otro Ej p seria distinto a p2 poir que las coordenadas no son iguales
     def __eq__(self, other):
