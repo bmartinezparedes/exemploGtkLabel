@@ -1,7 +1,7 @@
 # Documentación sphinx
 
 Para instalar sphinx:
-``$ sudo pip install -U sphinx```
+```$ sudo pip install -U sphinx```
 
 Crear carpeta donde vamos a trabajar dentro del proyecto, mi caso documentacion2.
 Dentro crear carpeta codigo donde meteremos el código que queremos que nos cree un
