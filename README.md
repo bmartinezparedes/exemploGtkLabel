@@ -1,4 +1,4 @@
-#2º Avaliación
+# 2º Avaliación
 
 Entran los archivos desde:
     
@@ -6,5 +6,5 @@ Entran los archivos desde:
 * [TreeView.py](TreeView.py)
 * [ExemploTreeViewSeleccion.py](ExemploTreeViewSeleccion.py)
 * [ExemploTreeViewOrdenadoFiltrado.py](ExemploTreeViewOrdenadoFiltrado.py)
-* [ejercicio.py](ejercicio.py)
+* [ejercicio.py](ejercicio.py) - Creo que nunca lo llegamos a acabar
 * [informes](informes) Este tine bastante contenido

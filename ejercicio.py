@@ -24,7 +24,7 @@ class Aplicacion(Gtk.Window):
         cajaH.add(checkButon)
         cajaV1.add(cajaH)
         lblPanelCaption = Gtk.Label(label="Panel Caption")
-        cajaV1.pack_start(lblPanelCaption)
+        cajaV1.add(lblPanelCaption)
 
         self.connect("destroy", Gtk.main_quit)
         self.show_all()
