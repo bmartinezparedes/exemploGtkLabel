@@ -1,4 +1,4 @@
-#Documentación sphinx
+# Documentación sphinx
 
 Para instalar sphinx:
 ``$ sudo pip install -U sphinx```
@@ -29,6 +29,7 @@ Entraremos en conf.py y modificaremos lo siguiente.
 |---|---|
 |![img_3.png](imagenesReadme/img_3.png)|![img_4.png](imagenesReadme/img_4.png)|
 |![img_5.png](imagenesReadme/img_5.png)|![img_6.png](imagenesReadme/img_6.png)|
+
 Ahora dentro de source crearemos la carpeta docHtml.
 Abriremos el index.rst y pondremos lo siguiente dentro:
 
@@ -44,4 +45,4 @@ Ahora asegurate que tienes bien documentado obxectos.py y pon el siguiente coman
 Esto creará un html dentro de build/html/docHtml/index.html donde al abrirlo en un
 navegador podremos ver la documentación del código de un archivo o un proyecto.
 
-#**FIN.**
+# **FIN.**
