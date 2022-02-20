@@ -4,7 +4,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 import sqlite3 as dbapi
 
-doc = SimpleDocTemplate("informes/exeploTaboas.pdf", pagesize=A4)
+doc = SimpleDocTemplate("exeploTaboas.pdf", pagesize=A4)
 
 guion = []
 
@@ -41,7 +41,7 @@ taboa2 = Table (data=datos,style=estilo)
 guion.append(taboa2)
 guion.append(Spacer(0,15))
 try:
-    bbdd = dbapi.connect("informes/modelosClasicos.dat")
+    bbdd = dbapi.connect("modelosClasicos.dat")
     cursor = bbdd.cursor()
     estilo = [('BOX', (0, 0), (-1, 0), 1.0, colors.darkgray),
               ('BOX', (0, 1), (-1, -1), 1.0, colors.darkgray),
